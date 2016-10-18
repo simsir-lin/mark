@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ajax</title>
+  </head>
+  <body>
+  </body>
+
+  <script type="text/javascript">
+    function careateHttpRequest() {
+      var xmlHttpReg = null;
+      if (window.ActiveXObject) {
+        xmlHttpReg = new ActiveXObject("Microsoft.XMLHTTP");
+      } else if (window.XMLHttpRequest) {
+        xmlHttpReg = new XMLHttpRequest();
+      }
+      return xmlHttpReg;
+    }
+
+    var xmlHttpRequest = careateHttpRequest();
+    if (xmlHttpRequest) {
+      xmlHttpRequest.open("get", "http://api.yumao1688.com/api/products", true);
+      xmlHttpRequest.send(null);
+      xmlHttpRequest.onreadystatechange = callBack;
+    }
+
+    function callBack() {
+      if (xmlHttpRequest.readyState === 4) {
+        if (xmlHttpRequest.status === 200) {
+          console.log(xmlHttpRequest.responseText);
+          // document.getElementsByTagName("body")[0].innerHTML = xmlHttpRequest.responseText;
+        }
+      }
+    }
+  </script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>loading</title>
+    <style>
+      .loading {
+        position: absolute;
+        clip: rect(0 5em 5em 0em);  /*当position: absolute才生效*/
+        width: 10em;
+        height: 10em;
+        animation: loading 1s linear infinite;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 .10em #3aa8ed;
+      }
+
+      @keyframes loading {
+        0% {
+            transform: rotate(-180deg);
+        }
+
+        100% {
+            transform: rotate(180deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loading"></div>
+  </body>
+</html>
