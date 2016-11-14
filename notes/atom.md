@@ -12,6 +12,7 @@
  * [atom-beautify](https://atom.io/packages/atom-beautify) —— 格式化代码，快键键 ctrl + alt + b
  * minimap —— 右侧代码预览
  * minimap-git-diff —— 右侧代码预览中显示修改的内容
+ * atom-bootstrap3 —— bootstrap3 语法块
 
 #### 主题
  * [atom-material-ui](https://atom.io/themes/atom-material-ui)
