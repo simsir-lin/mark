@@ -13,6 +13,10 @@
  * minimap —— 右侧代码预览
  * minimap-git-diff —— 右侧代码预览中显示修改的内容
  * atom-bootstrap3 —— bootstrap3 语法块
+ * highlight-selected —— 高亮所有和当前选中单词一样的单词
+ * minimap-highlight-selected —— 高亮所有和当前选中单词一样的单词在minmap中显示
+ * autocomplete-paths —— 自动补全路径
+ * JSHint  —— js代码检查
 
 #### 主题
  * [atom-material-ui](https://atom.io/themes/atom-material-ui)
