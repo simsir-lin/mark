@@ -17,6 +17,7 @@
  * minimap-highlight-selected —— 高亮所有和当前选中单词一样的单词在minmap中显示
  * autocomplete-paths —— 自动补全路径
  * JSHint  —— js代码检查
+ * language-javascript-jsx —— 高亮jsx文件语法
 
 #### 主题
  * [atom-material-ui](https://atom.io/themes/atom-material-ui)
