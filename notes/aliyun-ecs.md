@@ -19,7 +19,77 @@
 1. 下载php源码包：wget 下载地址(可上php官网获取)
 2. 解压：tar -xvf 下载的包名
 3. 进入目录
-4. 配置(设置php主目录,php.ini位置,开启fpm)：./configure --prefix=/usr/local/php --with-config-file-path=/usr/local/php/etc/ --enable-fpm
+4. 配置(设置php主目录,php.ini位置,开启fpm)：~~./configure --prefix=/usr/local/php --with-config-file-path=/usr/local/php/etc/ --enable-fpm~~
+``` javascript
+./configure \
+--prefix=/usr/local/php \
+--with-config-file-path=/usr/local/php/etc/ \
+--enable-fpm \
+--with-fpm-user=nginx  \
+--with-fpm-group=nginx \
+--enable-inline-optimization \
+--disable-debug \
+--disable-rpath \
+--enable-shared  \
+--enable-soap \
+--with-libxml-dir \
+--with-xmlrpc \
+--with-openssl \
+--with-mcrypt \
+--with-mhash \
+--with-pcre-regex \
+--with-sqlite3 \
+--with-zlib \
+--enable-bcmath \
+--with-iconv \
+--with-bz2 \
+--enable-calendar \
+--with-curl \
+--with-cdb \
+--enable-dom \
+--enable-exif \
+--enable-fileinfo \
+--enable-filter \
+--with-pcre-dir \
+--enable-ftp \
+--with-gd \
+--with-openssl-dir \
+--with-jpeg-dir \
+--with-png-dir \
+--with-zlib-dir  \
+--with-freetype-dir \
+--enable-gd-native-ttf \
+--enable-gd-jis-conv \
+--with-gettext \
+--with-gmp \
+--with-mhash \
+--enable-json \
+--enable-mbstring \
+--enable-mbregex \
+--enable-mbregex-backtrack \
+--with-libmbfl \
+--with-onig \
+--enable-pdo \
+--with-mysqli=mysqlnd \
+--with-pdo-mysql=mysqlnd \
+--with-zlib-dir \
+--with-pdo-sqlite \
+--with-readline \
+--enable-session \
+--enable-shmop \
+--enable-simplexml \
+--enable-sockets  \
+--enable-sysvmsg \
+--enable-sysvsem \
+--enable-sysvshm \
+--enable-wddx \
+--with-libxml-dir \
+--with-xsl \
+--enable-zip \
+--enable-mysqlnd-compression-support \
+--with-pear \
+--enable-opcache
+```
 5. make && make install
 6. 添加 PHP 命令到环境变量: vi /etc/profile,在末尾加入PATH=$PATH:/usr/local/php/bin换行export PATH, 使立即生效 #source /etc/profile, 测试：php -v
 7. 配置php-fpm: cp php.ini-production /usr/local/php/etc/php.ini
