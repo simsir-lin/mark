@@ -70,8 +70,8 @@
 --with-libmbfl \
 --with-onig \
 --enable-pdo \
---with-mysqli=mysqlnd \
---with-pdo-mysql=mysqlnd \
+--with-mysqli \
+--with-pdo-mysql \
 --with-zlib-dir \
 --with-pdo-sqlite \
 --with-readline \
