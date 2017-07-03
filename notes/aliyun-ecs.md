@@ -59,7 +59,6 @@
 --with-zlib-dir  \
 --with-freetype-dir \
 --enable-gd-native-ttf \
---enable-gd-jis-conv \
 --with-gettext \
 --with-gmp \
 --with-mhash \
