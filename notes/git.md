@@ -22,5 +22,8 @@
 1. git reset [commit] //本地先回滚到某个版本
 2. git push origin [branch] -f //强制推送，覆盖掉远程仓库分支
 
+### 拉取远程分支到本地
+* git checkout -b 本地分支名 origin/远程分支名
+
 > [commit] -- commit标识<br>
 [branch] -- 分支名称
