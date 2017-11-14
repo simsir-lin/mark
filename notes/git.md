@@ -1,7 +1,7 @@
 #### 撤销add的文件
 *  git rm --cached [filename] // 不删除物理文件，仅将该文件从缓存中删除
 *  git rm --f [filename] // 不仅将该文件从缓存中删除，还会将物理文件删除
-*  git reset --mixed [filename]  //撤销文件，就是回到add步骤前(保留修改)
+*  git reset HEAD [filename]  //撤销文件，就是回到add步骤前(保留修改)
 
 #### 撤销commit
 * git reset --hard [commit] //回滚到某个commit，什么都不保留
