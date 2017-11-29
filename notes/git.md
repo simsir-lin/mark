@@ -26,5 +26,10 @@
 ### 拉取远程分支到本地
 * git checkout -b 本地分支名 origin/远程分支名
 
+### 查看两个分支的区别
+* git diff [branch] [branch] --stat       //显示出所有有差异的文件列表
+* git diff [branch] [branch] 文件名(带路径)   //显示指定文件的详细差异
+* git diff [branch] [branch]                   //显示出所有有差异的文件的详细差异
+
 > [commit] -- commit标识<br>
 [branch] -- 分支名称
