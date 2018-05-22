@@ -20,16 +20,25 @@
 5. git commit -c [新的commit] // 新的commit指2生成的新的哈希值
 
 ### 某个分支回滚远程仓库某个版本
-1. git reset [commit] //本地先回滚到某个版本
+1. git reset --hard [commit] //本地先回滚到某个版本
 2. git push origin [branch] -f //强制推送，覆盖掉远程仓库分支
 
-### 拉取远程分支到本地
+### 拉取远程某个分支到本地
 * git checkout -b 本地分支名 origin/远程分支名
+
+### 拉取远程所有分支到本地
+* git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
 
 ### 查看两个分支的区别
 * git diff [branch] [branch] --stat       //显示出所有有差异的文件列表
 * git diff [branch] [branch] 文件名(带路径)   //显示指定文件的详细差异
 * git diff [branch] [branch]                   //显示出所有有差异的文件的详细差异
+
+### 查看某段代码是谁写的
+* git blame <file-name>
+
+### 修改远程仓库的url
+* git remote set-url origin <URL>
 
 > [commit] -- commit标识<br>
 [branch] -- 分支名称

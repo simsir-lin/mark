@@ -10,3 +10,9 @@
  * 简书：font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;   自认为简书的阅读体验很棒，我们看看简书所用的字体，简书优先选择了lucida家族的系列字体作为英文字体，该系列字体在Mac和Win上都是预装的，并且有着不俗的表现；中文字体方面将冬青黑体作为最优先使用的字体，同样考虑了Linux系统。
 
  * 微软雅黑为Win平台上最值得选择的中文字体，但非游览器默认，需要设置；西文字体的选择以Arial、Tahoma等无衬线字体为主。
+
+### 布局
+
+#### 一边固定一边自适应
+* flex：把外容器设为display:flex并指定宽度，给一个子容器指定一个宽度，那么另一个子容器的设置为flex:1;
+* 标准的w3c标准提供了自适应宽度的标准方法。把外容器设为display:table并指定宽度，然后把左右两个子容器设为display:table-cell；然后只给一个子容器指定一个宽度，那么另一个子容器的宽度就变成自适应了。
