@@ -40,5 +40,14 @@
 ### 修改远程仓库的url
 * git remote set-url origin <URL>
 
+### 打标签
+* git tag 1.0.0    // 默认tag是打在最近的一次commit上
+* git tag -a 1.0.0 -m "v1.0。0 发布描述" [commit]    // 指定commit打tag
+* git push origin 1.0.0    // 推送标签到远程仓库
+
+### 查看忽略的文件
+* git ls-files --others -i --exclude-standard
+
+
 > [commit] -- commit标识<br>
 [branch] -- 分支名称
