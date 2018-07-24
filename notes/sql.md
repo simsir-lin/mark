@@ -49,3 +49,4 @@
 * CREATE DATABASE `test2` DEFAULT CHARACTER SET utf8 -- 创建并设置默认编码
 * insert into t1 (stuname,age) select stuname,age from t2 -- 将t2所有数据搬到t1
 * int(5)  -- 表示  00005  用0补到5位
+* CREATE TABLE `users` (     `id` int(11) NOT NULL AUTO_INCREMENT,     `sessionkey` varchar(255) NOT NULL,   PRIMARY KEY (`id`)   ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;

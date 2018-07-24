@@ -1,3 +1,93 @@
+### 获取视频封面
+```javascript
+let video = document.createElement('video')
+video.addEventListener('loadeddata', function () {
+  file.raw.videoHeight = this.videoHeight
+  file.raw.videoWidth = this.videoWidth
+  let canvas = document.createElement('canvas')
+  canvas.width = 120
+  canvas.height = 120
+  canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height)
+  canvas.toBlob((blob) => {
+    let thumbUrl = URL.createObjectURL(blob)
+  }, 'image/png')
+  video = null
+})
+video.src = file.url
+```
+
+### 范围内的随机数
+```javascript
+const randomInRange = (min, max) => Math.random() * (max - min) + min;
+// randomInRange(2,10) -> 6.0211363285087005
+
+// 随机化数组的顺序
+const shuffle = arr => arr.sort(() => Math.random() - 0.5);
+// shuffle([1,2,3]) -> [2,3,1]
+```
+
+### URL参数
+```javascript
+const getUrlParameters = url => {
+  url.match(/([^?=&]+)(=([^&]*))/g).reduce(
+    (a, v) => (a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1), a), {}
+  )};
+// getUrlParameters('http://url.com/page?name=Adam&surname=Smith') -> {name: 'Adam', surname: 'Smith'}
+```
+
+### UUID生成器
+```javascript
+const uuid = _ =>
+  ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+  );
+// uuid() -> '7982fcfe-5721-4632-bede-6000885be57d'
+```
+
+### RGB到十六进制
+```javascript
+const rgbToHex = (r, g, b) => ((r << 16) + (g << 8) + b).toString(16).padStart(6, '0');
+// rgbToHex(255, 165, 1) -> 'ffa501'
+```
+
+### 滚动到顶部
+* 使用document.documentElement.scrollTop或document.body.scrollTop获取到顶部的距离。从顶部滚动一小部分距离。
+```javascript
+const scrollToTop = _ => {
+  const c = document.documentElement.scrollTop || document.body.scrollTop;
+  if (c > 0) {
+    window.requestAnimationFrame(scrollToTop);
+    window.scrollTo(0, c - c / 8);
+  }
+};
+
+// scrollToTop()
+```
+
+### 获取滚动位置
+```javascript
+const getScrollPos = (el = window) => {
+  return {
+    x: (el.pageXOffset !== undefined) ? el.pageXOffset : el.scrollLeft,
+    y: (el.pageYOffset !== undefined) ? el.pageYOffset : el.scrollTop
+  };
+};
+
+getScrollPos() -> {x: 0, y: 200}
+```
+
+### 测试一个函数所花费的时间
+```javascript
+const timeTaken = callback => {
+  console.time('timeTaken');
+  let r = callback();
+  console.timeEnd('timeTaken');
+  return r;
+};
+// timeTaken(() => Math.pow(2, 10)) -> 1024
+// (logged): timeTaken: 0.02099609375ms
+```
+
 ### 数组操作
 * 删除数组尾部元素,一个简单的用来清空或则删除数组尾部元素的简单方法就是改变数组的length属性值
 ```javascript
@@ -21,7 +111,7 @@ console.log([...new Set([42, 'foo', 42, 'foo', true, true])])  // => [42, foo, t
 ```javascript
 // 将数列中的值翻倍，然后挑选出那些大于50的数
 const numbers = [10, 20, 30, 40];
-const doubledOver50 = numbers.reduce((finalList, num)=>{
+const doubledOver50 = numbers.reduce((finalList, num, index)=>{
   num = num * 2;
   if (num > 50){
     finalList.push(num);
@@ -29,6 +119,23 @@ const doubledOver50 = numbers.reduce((finalList, num)=>{
   return finalList;
 }, []);
 console.log(doubledOver50)    // => [60, 80]
+```
+
+### Spread 运算符 (...)
+* ...[1, 2] => 1 2
+```javascript
+var a, b, c, d, e;  
+a = [1,2,3];  
+b = "dog";  
+c = [42, "cat"];  
+
+// Using the concat method.  
+d = a.concat(b, c);  
+// Using the spread operator.  
+e = [...a, b, ...c];  
+
+console.log(d);  // 1, 2, 3, "dog", 42, "cat"
+console.log(e);  // 1, 2, 3, "dog", 42, "cat"
 ```
 
 ### Promise
