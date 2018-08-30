@@ -12,6 +12,9 @@
 1. git push origin :[branch] //先删除远程分支
 2. git branch -d [branch] //再删除本地分支
 
+### 合并整理commit
+* git rebase -i [commit]
+
 #### 移动commit(master的commit移动到simsir)
 1. git checkout simsir //先切换到simsir
 2. git cherry-pick [commit] //[commit]是要移动的commit的哈希值，当执行完 cherry-pick 以后，将会生成一个新的提交；这个新的提交标识名一样，但哈希值和原来的不同(新的哈希值下面会用到)
@@ -27,7 +30,7 @@
 * git checkout -b 本地分支名 origin/远程分支名
 
 ### 拉取远程所有分支到本地
-* git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
+* git branch -r | grep -v '\\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
 
 ### 查看两个分支的区别
 * git diff [branch] [branch] --stat       //显示出所有有差异的文件列表

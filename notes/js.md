@@ -16,6 +16,19 @@ video.addEventListener('loadeddata', function () {
 video.src = file.url
 ```
 
+### 重复的定时器
+* 当你使用setInterval重复定义多个定时器的时候，可能会出现某个定时器代码在代码再次被添加到执行队列之前还没有完成执行，导致定时器代码连续执行多次。
+* 机智Javascript引擎解决了这个问题，使用setInterval()的时候，仅当没有该定时器的其他代码实例时，才会将定时器代码添加到队列中。但这还会导致一些问题：某些间隔被跳过、间隔可能比预期的小
+* 为了避免这个两个问题，你可以使用链式setTimeout()调用
+```javascript
+setTimeout(function(){
+    TODO();
+
+    setTimeout(arguments.callee, interval);
+}, interval)
+```
+* arguments.callee获取了当前执行函数的引用，然后为其设置另外一个定时器，这样就确保在下一次定时器代码执行前，必须等待指定的间隔。
+
 ### 范围内的随机数
 ```javascript
 const randomInRange = (min, max) => Math.random() * (max - min) + min;
@@ -48,6 +61,23 @@ const uuid = _ =>
 ```javascript
 const rgbToHex = (r, g, b) => ((r << 16) + (g << 8) + b).toString(16).padStart(6, '0');
 // rgbToHex(255, 165, 1) -> 'ffa501'
+```
+
+### 16进制颜色代码生成
+```javascript
+function() {  
+  return '#' + ('00000' + (Math.random()*0x1000000<<0).toString(16)).slice(-6);
+}
+```
+
+### 驼峰命名转下划线
+```javascript
+'componentMapModelRegistry'.match(/^[a-z][a-z0-9]+|[A-Z][a-z0-9]*/g).join('-').toLowerCase();
+```
+
+### 将argruments对象转换成数组
+```javascript
+var argArray = [...arguments];
 ```
 
 ### 滚动到顶部
@@ -153,6 +183,8 @@ Promise.prototype.finally = function (callback) {
 ### 模块化 CommonJS、AMD/CMD、ES6 Modules
 #### CommonJS
 * Node.js是`commonJS`规范的主要实践者，它有四个重要的环境变量为模块化的实现提供支持：`module`、`exports`、`require`、`global`。实际使用时，用module.exports定义当前模块对外输出的接口，用`require`加载模块。
+* CommonJS一个文件就是一个模块，拥有单独的作用域; 普通方式定义的变量、函数、对象都属于该模块内; 通过require来加载模块，通过exports和modul.exports来暴露模块中的内容
+* 所有代码都运行在模块作用域，不会污染全局作用域；模块可以多次加载，但只会在第一次加载的时候运行一次，然后运行结果就被缓存了，以后再加载，就直接读取缓存结果；模块的加载顺序，按照代码的出现顺序是同步加载的;
 
 ```javascript
 // 定义模块 area.js
@@ -169,7 +201,7 @@ var math = require('./math');
 math.area(2);
 ```
 
-* 但是我们并没有直接定义 `module`、`exports`、`require`这些模块，以及 Node 的 API 文档中提到的`__filename`，`__dirname`。那么是从何而来呢？其实在编译的过程中，Node 对我们定义的 JS 模块进行了一次基础的包装：
+* `__dirname`代表当前模块文件所在的文件夹路径，`__filename`代表当前模块文件所在的文件夹路径+文件名，但是我们并没有直接定义 `module`、`exports`、`require`这些模块，以及 Node 的 API 文档中提到的`__filename`，`__dirname`。那么是从何而来呢？其实在编译的过程中，Node 对我们定义的 JS 模块进行了一次基础的包装：
 
 ```javascript
 (function(exports, require, modules, __filename, __dirname)) {

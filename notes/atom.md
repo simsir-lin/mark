@@ -8,7 +8,7 @@
  * alt + \  ——  切换tree和编写区的焦点
 
 #### 插件
- * emmet —— 支持[zen coding](http://www.w3cplus.com/tools/emmet-cheat-sheet.html)
+ * emmet —— 支持[zen coding](http://www.w3cplus.com/tools/emmet-cheat-sheet.html) -- 快键键 ctrl + option + enter
  * [atom-beautify](https://atom.io/packages/atom-beautify) —— 格式化代码，快键键 ctrl + alt + b
  * minimap —— 右侧代码预览
  * minimap-git-diff —— 右侧代码预览中显示修改的内容

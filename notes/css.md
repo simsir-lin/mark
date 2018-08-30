@@ -11,8 +11,20 @@
 
  * 微软雅黑为Win平台上最值得选择的中文字体，但非游览器默认，需要设置；西文字体的选择以Arial、Tahoma等无衬线字体为主。
 
-### 布局
+### 多行文本溢出显示...
+```
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 3;
+overflow: hidden;
+```
+适用范围：因使用了WebKit的CSS扩展属性，该方法适用于WebKit浏览器及移动端；
+1. -webkit-line-clamp 用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性：
+2. display: -webkit-box; 必须结合的属性，将对象作为弹性伸缩盒子模型显示
+3. -webkit-box-orient 必须结合的属性，设置或检索伸缩盒对象的子元素的排列方式
 
+
+### 布局
 #### 一边固定一边自适应
 * flex：把外容器设为display:flex并指定宽度，给一个子容器指定一个宽度，那么另一个子容器的设置为flex:1;
 * 标准的w3c标准提供了自适应宽度的标准方法。把外容器设为display:table并指定宽度，然后把左右两个子容器设为display:table-cell；然后只给一个子容器指定一个宽度，那么另一个子容器的宽度就变成自适应了。
