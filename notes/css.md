@@ -11,6 +11,22 @@
 
  * 微软雅黑为Win平台上最值得选择的中文字体，但非游览器默认，需要设置；西文字体的选择以Arial、Tahoma等无衬线字体为主。
 
+#### 伪类和伪元素
+* 单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素
+
+### Chrome、Safari等浏览器，当表单提交用户选择记住密码后，下次自动填充表单的背景变成黄色，影响了视觉体验是否可以修改？
+```css
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  background-color: #fff;//设置成元素原本的颜色
+  background-image: none;
+  color: rgb(0, 0, 0);
+}
+/* 方法2 */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0px 0 3px 100px #ccc inset; //背景色
+}
+```
+
 ### 多行文本溢出显示...
 ```
 display: -webkit-box;
