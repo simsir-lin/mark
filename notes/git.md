@@ -8,12 +8,11 @@
 * git reset --soft [commit] //将撤销放在缓存区，就是回到add步骤后
 * git reset --mixed [commit] //撤销全部，就是回到add步骤前(保留修改)
 
-#### 删除分支
-1. git push origin :[branch] //先删除远程分支
-2. git branch -d [branch] //再删除本地分支
-
 ### 合并整理commit
 * git rebase -i [commit]
+
+### 将这次的提交合并到最后一次提交
+* git commit --amend
 
 #### 移动commit(master的commit移动到simsir)
 1. git checkout simsir //先切换到simsir
@@ -21,6 +20,10 @@
 3. // 如果顺利，就会正常提交到simsir分支，如果出现了冲突，
 4. git add <冲突文件> // 解决冲突后add到缓存区
 5. git commit -c [新的commit] // 新的commit指2生成的新的哈希值
+
+#### 删除分支
+1. git push origin :[branch] //先删除远程分支
+2. git branch -d [branch] //再删除本地分支
 
 ### 某个分支回滚远程仓库某个版本
 1. git reset --hard [commit] //本地先回滚到某个版本
@@ -52,6 +55,10 @@
 
 ### 查看忽略的文件
 * git ls-files --others -i --exclude-standard
+
+### 在项目的历史代码中任意穿梭
+* git reflog // 这条命令能列出你在 Git 上的所有操作记录，你只要找到 HEAD@{index} 前面所对应的操作索引，并使用下面命令即可
+* git reset HEAD@{index}  // 使用时需将HEAD@{index}替换为对应索引
 
 
 > [commit] -- commit标识<br>

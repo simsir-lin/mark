@@ -12,6 +12,23 @@
 * MVVM表示视图状态的操作变量的定义应当在VM当中，相关的逻辑交互也应当在VM当中。如果说View提供了视图的所有展示元素；那么VM则可以确定某个视图模块某一时刻某一个状态下的呈现内容。
 * 一个VM不一定只和一个View存在关联，它可能同时协调多个视图。
 
+### EventLoop
+```javascript
+console.log('1');
+setTimeout(() => {
+  console.log('2');
+})
+setTimeout(() => {
+  console.log('3');
+}, 1000)
+Promise.resolve().then(() => {
+  console.log('4');
+})
+console.log('5');
+// ===> 1,5,4,2,3
+```
+* 先执行微任务（Promise），再执行宏任务（setTimeout）
+
 ### 获取视频封面
 ```javascript
 let video = document.createElement('video')
