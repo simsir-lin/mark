@@ -29,6 +29,36 @@ console.log('5');
 ```
 * 先执行微任务（Promise），再执行宏任务（setTimeout）
 
+### debounce 防抖 -- 把触发非常频繁的事件合并成一次去执行，即在指定时间内只执行一次回调函数，如果在指定的时间内又触发了该事件，则回调函数的执行时间会基于此刻重新开始计算。
+```javascript
+var debounce = function(fn, delayTime) {  
+  var timeId;
+  return function () {
+    var context = this, args = arguments;
+    timeId && clearTimeout(timeout);
+    timeId = setTimeout(function {
+      fn.apply(context, args);
+    }, delayTime)
+  }
+}
+// 执行debounce函数之后会返回一个新的函数，通过闭包的形式，维护一个变量timeId
+// 每次执行该函数的时候会结束之前的延迟操作，重新执行setTimeout方法，也就实现了上面所说的指定的时间内多次触发同一个事件，会合并执行一次。
+```
+
+### throttle 节流 -- 是指频繁触发事件时，只会在指定的时间段内执行事件回调，即一段时间内只会执行第一次执行的事件
+```javascript
+var throttle = function(fn, delayTime) {
+  var _lastTime = null;
+  return function () {
+    let _nowTime = +new Date()
+    if (_nowTime - _lastTime > delayTime || !_lastTime) {
+      fn.apply(this, arguments)
+      _lastTime = _nowTime
+    }
+  }
+}
+```
+
 ### 获取视频封面
 ```javascript
 let video = document.createElement('video')
