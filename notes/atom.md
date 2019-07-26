@@ -12,14 +12,19 @@
  * [atom-beautify](https://atom.io/packages/atom-beautify) —— 格式化代码，快键键 ctrl + alt + b
  * minimap —— 右侧代码预览
  * minimap-git-diff —— 右侧代码预览中显示修改的内容
+ * minimap-autohider —— 右侧代码预览中显示修改的内容
+ * best-js-snippets —— js基本语法
  * atom-bootstrap3 —— bootstrap3 语法块
  * highlight-selected —— 高亮所有和当前选中单词一样的单词
  * minimap-highlight-selected —— 高亮所有和当前选中单词一样的单词在minmap中显示
  * autocomplete-paths —— 自动补全路径
+ * autocomplete-en-cn —— 自动翻译
  * vuejs2-snippets —— vue提示语块
  * language-vue —— vue语法高亮显示
  * JSHint  —— js代码检查
  * language-javascript-jsx —— 高亮jsx文件语法
+ * atom-ternjs —— js静态编译
+ * javascript-snippets -- js提示块
 
 #### 主题
  * [atom-material-ui](https://atom.io/themes/atom-material-ui)

@@ -1,3 +1,111 @@
+## 变量
+### 类型
+* 原始类型
+1. Null：只包含一个值：null
+2. Undefined：只包含一个值：undefined
+3. Boolean：包含两个值：true和false
+4. Number：整数或浮点数，还有一些特殊值（-Infinity、+Infinity、NaN）
+5. String：一串表示文本值的字符序列
+6. Symbol：一种实例是唯一且不可改变的数据类型（es6）
+(在es10中加入了第七种原始类型BigInt，现已被最新Chrome支持)
+* 对象类型
+1. Object：自己分一类丝毫不过分，除了常用的Object，Array、Function等都属于特殊的对象
+
+### 不可变性
+* 在JavaScript中，每一个变量在内存中都需要一个空间来存储。内存空间又被分为两种，栈内存与堆内存。JavaScript中的`原始类型`的值被直接存储在栈中，在变量定义时，栈就为其分配好了内存空间。由于栈中的内存空间的大小是固定的，那么注定了存储在栈中的变量就是不可变的。
+
+### 值传递和引用传递
+* 值传递：即函数参数仅仅是被传入变量复制给了的一个局部变量，改变这个局部变量不会对外部变量产生影响。
+* `ECMAScript`中所有的函数的参数都是按值传递的。
+
+### 精度丢失
+* 计算机中所有的数据都是以二进制存储的，所以在计算时计算机要把数据先转换成二进制进行计算，然后在把计算结果转换成十进制。在计算0.1+0.2时，二进制计算发生了精度丢失，导致再转换成十进制后和预计的结果不符。
+
+### 包装类型
+* 为了便于操作基本类型值，ECMAScript还提供了几个特殊的引用类型，他们是基本类型的包装类型：
+```javascript
+true === new Boolean(true); // false
+123 === new Number(123); // false
+'ConardLi' === new String('ConardLi'); // false
+console.log(typeof new String('ConardLi')); // object
+console.log(typeof 'ConardLi'); // string
+// 引用类型和包装类型的主要区别就是对象的生存期，使用new操作符创建的引用类型的实例，在执行流离开当前作用域之前都一直保存在内存中，而自基本类型则只存在于一行代码的执行瞬间，然后立即被销毁，这意味着我们不能在运行时为基本类型添加属性和方法。
+```
+* 装箱转换：把基本类型转换为对应的包装类型；拆箱操作：把引用类型转换为基本类型
+* 每当我们操作一个基础类型时，后台就会自动创建一个包装类型的对象，从而让我们能够调用一些方法和属性，例如下面的代码：
+```javascript
+var name = "ConardLi";
+var name2 = name.substring(2);
+// 实际上发生了以下几个过程：
+// 1. 创建一个String的包装类型实例
+// 2. 在实例上调用substring方法
+// 3. 销毁实例
+// 也就是说，我们使用基本类型调用方法，就会自动进行装箱和拆箱操作，相同的，我们使用Number和Boolean类型时，也会发生这个过程。
+```
+* 从引用类型到基本类型的转换，也就是拆箱的过程中，会遵循ECMAScript规范规定的toPrimitive原则，一般会调用引用类型的valueOf和toString方法，你也可以直接重写toPeimitive方法。一般转换成不同类型的值遵循的原则不同，例如：
+1. 引用类型转换为`Number`类型，先调用`valueOf`，再调用`toString`
+2. 引用类型转换为`String`类型，先调用`toString`，再调用`valueOf`
+
+### 判断JavaScript数据类型的方式
+* `typeof`操作符可以准确判断一个变量的原始类型
+* `instanceof` 可以帮助我们判断引用类型具体是什么类型的对象：
+```javascript
+[] instanceof Array // true
+new Date() instanceof Date // true
+new RegExp() instanceof RegExp // true
+```
+* `toString`每一个引用类型都有toString方法，默认情况下，toString()方法被每个Object对象继承。如果此方法在自定义对象中未被覆盖，toString() 返回 "[object type]"，其中type是对象的类型
+```javascript
+const obj = {};
+obj.toString() // [object Object]
+// 上面提到了如果此方法在自定义对象中未被覆盖，toString才会达到预想的效果，事实上，大部分引用类型比如Array、Date、RegExp等都重写了toString方法。
+// 我们可以直接调用Object原型上未被覆盖的toString()方法，使用call来改变this指向来达到我们想要的效果。
+Object.prototype.toString.call(true)  // [object Boolean]
+```
+
+### Symbol
+```javascript
+var sym1 = Symbol();  // Symbol()
+var sym2 = Symbol('ConardLi');  // Symbol(ConardLi)
+var sym3 = Symbol('ConardLi');  // Symbol(ConardLi)
+var sym4 = Symbol({name:'ConardLi'}); // Symbol([object Object])
+console.log(sym2 === sym3);  // false
+```
+* 独一无二，我们用两个相同的字符串创建两个Symbol变量，它们是不相等的，可见每个Symbol变量都是独一无二的
+* 不可枚举
+* 应用场景
+1. 防止XSS
+2. 私有属性，借助Symbol类型的不可枚举，我们可以在类中模拟私有属性，控制变量读写：
+```javascript
+const privateField = Symbol();
+class myClass {
+  constructor(){
+    this[privateField] = 'ConardLi';
+  }
+  getField(){
+    return this[privateField];
+  }
+  setField(val){
+    this[privateField] = val;
+  }
+}
+```
+3. 防止属性污染，在某些情况下，我们可能要为对象添加一个属性，此时就有可能造成属性覆盖，用Symbol作为对象属性可以保证永远不会出现同名属性。
+```javascript
+Function.prototype.myCall = function (context) {
+  if (typeof this !== 'function') {
+    return undefined; // 用于防止 Function.prototype.myCall() 直接调用
+  }
+  context = context || window;
+  const fn = Symbol();
+  context[fn] = this;
+  const args = [...arguments].slice(1);
+  const result = context[fn](...args);
+  delete context[fn];
+  return result;
+}
+```
+
 ## 设计模式
 ### 23种设计模式基于以上6大基本原则结合具体开发实践总结出来的，万变不离其宗，有了这些基本的意识规范，你写出来的，搞不好就是某种设计模式٩(๑>◡<๑)۶
 * 单一原则 （SRP）-- 实现类要职责单一,一个类只做一件事或者一类事，不要将功能无法划分为一类的揉到一起，答应我好吗
@@ -141,6 +249,12 @@ function() {
 var argArray = [...arguments];
 ```
 
+### Array.prototype.slice.call() & Array.from()
+* Array.from() 能将类数组(arguments,NodeList)，可迭代对象(Set,Map)，字符串(String)转换成数组
+* Array.from(arrayLike, mapFn, thisArg) -->  Array.from(arrayLike).map(fn(), thisArg)
+* Array.prototype.slice.call() 能将类数组(arguments,NodeList)，字符串(String)转换成数组
+* Array.prototype.slice.call(arrayLike, index) 从第index个开始转换成数组
+
 ### 滚动到顶部
 * 使用document.documentElement.scrollTop或document.body.scrollTop获取到顶部的距离。从顶部滚动一小部分距离。
 ```javascript
@@ -240,6 +354,107 @@ Promise.prototype.finally = function (callback) {
   );
 };
 ```
+* 简单实现Promise
+```javascript
+class MyPromise {
+    constructor(fn) {
+        this.resolvedCallbacks = [];
+        this.rejectedCallbacks = [];
+        this.state = "PADDING";
+        this.value = "";
+        fn(this.resolve.bind(this), this.reject.bind(this));
+    }
+    resolve(value) {
+        if (this.state === "PADDING") {
+            this.state = "RESOLVED";
+            this.value = value;
+            this.resolvedCallbacks.forEach(cb => cb());
+        }
+    }
+    reject(value) {
+        if (this.state === "PADDING") {
+            this.state = "REJECTED";
+            this.value = value;
+            this.rejectedCallbacks.forEach(cb => cb());
+        }
+    }
+    then(resolve = function() {}, reject = function() {}) {
+        if (this.state === "PADDING") {
+            this.resolvedCallbacks.push(resolve);
+            this.rejectedCallbacks.push(reject);
+        }
+        if (this.state === "RESOLVED") {
+            resolve(this.value);
+        }
+        if (this.state === "REJECTED") {
+            reject(this.value);
+        }
+    }
+}
+```
+
+* async/await
+```javascript
+async function timeout(ms) {
+  await new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
+async function asyncPrint(value, ms) {
+  await timeout(ms);
+  console.log(value);
+}
+
+asyncPrint('hello world', 50);
+```
+
+* 深拷贝、浅拷贝 - 浅拷贝和深拷贝都只针对于引用数据类型，浅拷贝只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存；但深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象；
+1. 浅拷贝的实现方式
+```javascript
+function simpleCopy (initalObj) {
+   var obj = {};
+   for ( var i in initalObj) {
+    obj[i] = initalObj[i];
+   }
+   return obj;
+}
+
+// ES6 的 Object.assign()
+let newObj = Object.assign({}, obj);
+
+// ES6 的对象扩展
+let newObj = {...obj};
+```
+2. 深拷贝的实现方式
+```javascript
+function deepClone(obj) {
+    let objClone = Array.isArray(obj) ? [] : {};
+    if (obj && typeof obj === "object") {
+        // for...in 会把继承的属性一起遍历
+        for (let key in obj) {
+            // 判断是不是自有属性，而不是继承属性
+            if (obj.hasOwnProperty(key)) {
+                //判断ojb子元素是否为对象或数组，如果是，递归复制
+                if (obj[key] && typeof obj[key] === "object") {
+                    objClone[key] = this.deepClone(obj[key]);
+                } else {
+                    //如果不是，简单复制
+                    objClone[key] = obj[key];
+                }
+            }
+        }
+    }
+    return objClone;
+}
+
+let newObj = JSON.parse(JSON.stringify(obj));
+
+// 用 lodash 函数库提供的 _.cloneDeep 方法实现深拷贝。
+var _ = require('lodash');
+var newObj = _.cloneDeep(obj);
+```
+
 
 ### 模块化 CommonJS、AMD/CMD、ES6 Modules
 #### CommonJS
