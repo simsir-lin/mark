@@ -11,3 +11,5 @@
 * 时效：localStorage 存储持久数据，浏览器关闭后数据不丢失除非用户主动删除数据或清除浏览器/应用缓存；sessionStorage 数据在当前浏览器窗口关闭后自动删除。cookie 设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭
 * 如何让cookie浏览器关闭就失效？——不对cookie设置任何正、负或0时间的即可
 * sessionStorage在浏览器多窗口之间 (同域)数据是否互通共享? ——不会，都是独立的，localStorage会共享
+
+### 浏览器输入URL开始

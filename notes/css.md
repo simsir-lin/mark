@@ -48,5 +48,10 @@ overflow: hidden;
 
 #### flex布局采用space-around这种方法，但是最后一行如何让他左对齐
 * 后面添加空白占位元素
+* 容器追加伪元素:after {content:''; flex:auto;}
 
 ### 弹窗使用fixed布局
+* iOS fixed无法穿过overflow
+
+### 固定高度
+* 尽量使用min-height，部分浏览器flex会控制height
