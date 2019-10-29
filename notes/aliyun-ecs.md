@@ -6,14 +6,17 @@
 2. yum install nginx
 3. service nginx start
 4. 访问http://IP测试（项目地址/usr/share/nginx/html）
+5. systemctl enable nginx.service // 开机启动
 
 #### mysql
-1. 安装mysql源(要注意系统去选择源，这里是centos7版本): yum localinstall 源地址(可上mysql官网获取)
+1. 安装mysql源(要注意系统去选择源，这里是centos7版本): yum localinstall 源地址(可上mysql官网获取，如http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm)
 2. yum install mysql-community-server
-3. yum install mysql-community-devel
-4. service mysqld start
-5. mysql -uroot -p
-6. 修改root初始密码
+3. yum install mysql-community-devel  // 开发用到的库以及包含文件
+4. service mysqld start // or systemctl start mysqld
+5. systemctl status mysqld.service  // 查看MySQL运行状态
+6. grep 'temporary password' /var/log/mysqld.log  // 查看初始密码
+6. mysql -uroot -p
+7. set password for 'root'@'localhost'=password('NewPass')  // 修改root初始密码
 
 #### php
 1. 下载php源码包：wget 下载地址(可上php官网获取)
