@@ -1,5 +1,6 @@
 #### 准备
-1. yum update
+1. CentOS 7.6
+2. yum update
 
 #### nginx
 1. 安装nginx源（要注意系统去选择源，这里是centos7版本）： yum localinstall http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
@@ -17,6 +18,34 @@
 6. grep 'temporary password' /var/log/mysqld.log  // 查看初始密码
 6. mysql -uroot -p
 7. set password for 'root'@'localhost'=password('NewPass')  // 修改root初始密码
+8. systemctl enable mysqld.service // 开机启动
+
+#### php-yum
+1. rpm -Uvh https://mirrors.cloud.tencent.com/epel/epel-release-latest-7.noarch.rpm
+2. rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+3. yum -y install mod_php72w.x86_64 php72w-cli.x86_64 php72w-common.x86_64 php72w-mysqlnd php72w-fpm.x86_64
+4. systemctl start php-fpm
+5. systemctl enable php-fpm
+
+#### redis
+1. yum install redis
+2. /bin/systemctl start redis.service
+3. redis-cli
+4. whereis redis.config
+5. 允许远程访问 #bind 127.0.0.1
+6. 端口号 port 6379
+7. 设置密码 requirepass ____
+8. 关闭保护 protected-mode no
+* /bin/systemctl restart redis.service   // 重启
+* /bin/systemctl stop redis.service   // 关闭
+
+#### composer
+1. php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php')
+2. php composer-setup.php
+3. php -r "unlink('composer-setup.php')
+4. sudo mv composer.phar /usr/local/bin/composer
+5. composer config -g repo.packagist composer https://packagist.phpcomposer.com   // 中国镜像
+
 
 #### php
 1. 下载php源码包：wget 下载地址(可上php官网获取)

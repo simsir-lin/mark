@@ -60,6 +60,9 @@
 * git reflog // 这条命令能列出你在 Git 上的所有操作记录，你只要找到 HEAD@{index} 前面所对应的操作索引，并使用下面命令即可
 * git reset HEAD@{index}  // 使用时需将HEAD@{index}替换为对应索引
 
+### 记住密码
+* git config --global credential.helper store
+
 
 > [commit] -- commit标识<br>
 [branch] -- 分支名称

@@ -51,3 +51,4 @@
 * int(5)  -- 表示  00005  用0补到5位
 * CREATE TABLE `users` (     `id` int(11) NOT NULL AUTO_INCREMENT,     `sessionkey` varchar(255) NOT NULL,   PRIMARY KEY (`id`)   ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 * ALTER TABLE table_name ADD INDEX index_name (column);  // 新增索引
+* DROP INDEX 索引名 ON 表名字;
