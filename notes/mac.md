@@ -1,8 +1,3 @@
-#### Safari插件
- * mama2 —— 转html5播放(http://zythum.github.io/mama2/)
- * Stylish -- 给某些特定的网站配置样式
- * Adblock Plus —— 去广告
-
 #### 技巧
  * control + command + 空格 —— 调出emoji表情
  * Command + L —— 快速跳到地址栏
@@ -33,13 +28,15 @@
  * 停止：sudo sbin/nginx -s stop
 
 
-#### 终端git配置
- * git clone https://github.com/git/git 下 git/contrib/completion/git-prompt.sh
- * git clone https://github.com/markgandolfo/git-bash-completion
- * 移动git-completion.bash、git-prompt.sh到～目录下，mv from to
- * cd ~/
- * vi bash_profile
+#### git 分支显示、自动补全
+ * 下载本地git对应版本的 `git-completion.bash` 和 `git-prompt.sh`
+ ```bash
+ curl -O https://raw.githubusercontent.com/git/git/v2.23.0/contrib/completion/git-completion.bash
+curl -O https://raw.githubusercontent.com/git/git/v2.23.0/contrib/completion/git-prompt.sh
  ```
+ * 移动git-completion.bash、git-prompt.sh到～目录下
+ * cd ~/ , vi .bash_profile
+ ```bash
  # Prompt
  red='\[\033[0;31m\]'
  brown='\[\033[0;33m\]'
