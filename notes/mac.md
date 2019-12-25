@@ -76,3 +76,13 @@
 #### 深色模式
 * 打开终端，输入指令：`defaults write -g NSRequiresAquaSystemAppearance -bool Yes`，让你只将菜单栏和程序坞使用深色模式，而其他保持浅色模式不变。注销并重新登录
 * 如果你想恢复成系统的深色模式，那么在终端输入defaults delete -g NSRequiresAquaSystemAppearance，再注销并重新登录即可
+
+#### iterm2
+* SF Mono 字体
+```bash
+cd /Applications/Utilities/Terminal.app/Contents/Resources/Fonts/`, `cp *.otf ~/Library/Fonts/`
+```
+* 颜色配置
+```bash
+git clone https://github.com/dracula/iterm.git
+```
