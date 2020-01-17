@@ -41,7 +41,7 @@
 * git diff [branch] [branch]                   //显示出所有有差异的文件的详细差异
 
 ### 查看某段代码是谁写的
-* git blame <file-name>
+* git blame filename -L 210
 
 ### 修改远程仓库的url
 * git remote set-url origin <URL>
