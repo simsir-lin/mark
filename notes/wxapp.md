@@ -23,3 +23,4 @@
 ### 组件
 * 生命周期 prop observer => attached
 * reday可获取关联子组件
+* text标签自动实现单词不分割换行
