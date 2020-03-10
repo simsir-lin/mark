@@ -293,6 +293,8 @@ const timeTaken = callback => {
 // (logged): timeTaken: 0.02099609375ms
 ```
 
+### 通过定义固定的JSON scheme ，然后拼接生成
+
 ### 数组操作
 * 删除数组尾部元素,一个简单的用来清空或则删除数组尾部元素的简单方法就是改变数组的length属性值
 ```javascript
